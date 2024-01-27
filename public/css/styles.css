@@ -12,6 +12,7 @@ body {
 
 h1, h2 {
   font-size: 1.2em;
+  text-align: center;
 }
 #wrapper {
   width: 100%;
@@ -62,43 +63,51 @@ nav {
   background-color: #3a3a3a;
 }
 
-nav {
-  display: flex;
-  justify-content: center;
-}
-
 nav ul {
   list-style: none;
   padding: 1%;
   margin: 0;
   display: flex;
-}
-
-nav a {
-  display: flex;
-  align-items: center;
-  height: 100%;
-  color: white;
-
+  justify-content: center; 
 }
 
 nav ul li {
-  margin-right: 15px;
-  color: white;
-  text-decoration: none;
-  font-size: 0.6em;
+  margin-right: 1em;
+  color: #fff;
+  font-size: 1em; 
 }
-
 
 nav a {
- 
   display: flex;
-  align-items: center;
-  height: 100%;
-  padding: 0.5em 1em; 
+  padding: 0.25rem 0.5em; 
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
 }
 
+nav a:hover {
+  background-color: #fff;
+  color: #3a3a3a;
+}
 
+/*Footer*/
+
+
+footer a {
+  display: inline-block;
+  padding: 1%;
+  width: 100%;
+  margin: 0 auto; 
+  text-align: center;
+}
+
+.copyright {
+  display: inline-block;
+  width: 100%; 
+  margin: 0 auto; 
+  text-align: center;
+  padding: 1.5%;
+}
 
 footer p {
   margin-left: 10px;
@@ -108,8 +117,10 @@ footer p {
 }
 
 main {
-  padding-left: 0.25rem;
+  padding: 0.35em;
 }
+
+
 #delorean {
   background-image: url("/images/vehicles/delorean.jpg");
   background-repeat: no-repeat;
@@ -198,7 +209,60 @@ figure figcaption {
   margin-bottom: 1em;
 }
 
-@media only screen and (min-width: 768px) {
+.namePrice {
+  text-align: center;
+  text-decoration: none;
+}
+
+
+/* Styles for the vehicle list */
+#inv-display {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+}
+
+#inv-display li {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+#inv-display li img {
+  width: 100%;
+  height: auto;
+}
+
+/* Styles for the vehicle details */
+
+
+.vehicle-detail {
+  display: grid;
+  grid-template-columns: 1fr;
+  float: right; 
+  margin-left: 20px;
+}
+.vehicle-info {
+  border: 1px solid #ccc; 
+  padding: 10px; 
+}
+.vehicle-info p {
+  margin: 0; 
+  padding: 10px 0; 
+  line-height: 1.5;
+  font-weight: bold; 
+}
+
+.vehicle-detail img {
+  display: block; 
+  margin: 0 auto;
+  max-width: 99%;
+  height: auto;
+}
+
+
+@media only screen and (min-width: 890px) {
 
   body {
     background-image: url("/images/site/small_check.jpg");
@@ -209,28 +273,22 @@ figure figcaption {
     font-size: 1.9em;
   }
   
-  
-  nav {
-    margin: 0.75rem;
-  }
-
+ 
   nav ul {
-    list-style: none;
-    padding: 1%;
-    margin: 0;
-    display: flex;
+    align-items: center;
   }
 
   nav ul li {
-    margin-right: 2em; 
-    color: #fff;
-    font-size: 1.2em;
+    margin-right: 0;
+    margin-bottom: 0.5em; 
+    font-size: 0.9em; 
   }
 
   nav a {
     display: inline-block;
     width: 4.5em;
     padding: 0.25rem 0;
+    font-size: 1.3em;
   }
 
  
@@ -284,6 +342,24 @@ figure figcaption {
 
 #add-ons, #review {
   margin-top: 0;
+}
+
+
+.vehicle-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  float: right; 
+  margin-left: 20px; 
+}
+.vehicle-info {
+  border: 1px solid #ccc; 
+  padding: 10px; 
+}
+.vehicle-info p {
+  margin: 0; 
+  padding: 15px 0; 
+  line-height: 1.5; 
+  font-weight: bold;
 }
 
 }
