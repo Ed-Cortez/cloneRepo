@@ -99,6 +99,7 @@ footer a {
   width: 100%;
   margin: 0 auto; 
   text-align: center;
+  color: black;
 }
 
 .copyright {
@@ -107,6 +108,7 @@ footer a {
   margin: 0 auto; 
   text-align: center;
   padding: 1.5%;
+  color: black;
 }
 
 footer p {
@@ -114,6 +116,7 @@ footer p {
   margin-top: 0;
   margin-bottom: 0;
   font-size: 0.9em;
+  color: black;
 }
 
 main {
@@ -326,7 +329,6 @@ padding: 0 5% 0 5%;
 }
 
 
-
 /* styling for registration form */
 #register {
   display: block;
@@ -370,6 +372,127 @@ padding: 0 5% 0 5%;
 #register input:hover {
   background-color: #3a3a3a;
   color: #ccc;
+}
+
+/* Management view*/
+.management-link {
+  display: block;
+  padding: 1.5% 8% 1.5% 8%;
+}
+
+/* Add Classification view*/
+
+#new-classification {
+  display: block;
+  margin: auto;
+  padding: 6% 10% 5% 10%;
+  border-radius: 5px;
+  border: 3px solid rgb(22, 64, 136);
+  width: 50%;
+  background-color: rgb(22, 47, 85);
+  color: white;
+}
+
+#new-classification a, p {
+  color: white;
+  text-align: center;
+}
+
+#new-classification i {
+display: block;
+font-size: 0.8em;
+text-align: center;
+margin: auto;
+padding: 0 5% 0 5%;
+}
+
+#new-classification label {
+  text-align: left;
+  margin-left: 5%;
+  font-size: 1.2em;
+}
+
+#new-classification input {
+  display: block;
+  width: 90%;
+  border-radius: 5px;
+  border: 1px solid grey;
+  margin: 0 auto 5%;
+  padding: 1.5% 5%;
+}
+
+#new-classification input:hover {
+  background-color: #3a3a3a;
+  color: #ccc;
+}
+
+
+/* Add new Vehicle view*/
+
+#new-Inventory {
+  display: block;
+  margin: auto;
+  padding: 6% 10% 5% 10%;
+  border-radius: 5px;
+  border: 3px solid rgb(22, 64, 136);
+  width: 60%;
+  background-color: rgb(22, 47, 85);
+  color: white;
+}
+
+#new-Inventory a, p {
+  color: white;
+  text-align: center;
+}
+
+#new-Inventory i {
+display: block;
+font-size: 0.8em;
+text-align: center;
+margin: auto;
+padding: 0 5% 0 5%;
+}
+
+#new-Inventory label {
+  text-align: left;
+  margin-left: 5%;
+  font-size: 1.2em;
+}
+
+#new-Inventory input {
+  display: block;
+  width: 90%;
+  border-radius: 5px;
+  border: 1px solid grey;
+  margin: 0 auto 5%;
+  padding: 1.5% 5%;
+}
+
+#new-Inventory input:hover {
+  background-color: #3a3a3a;
+  color: #ccc;
+}
+
+#inv_description {
+  display: block;
+  width: 90%;
+  border-radius: 5px;
+  border: 1px solid grey;
+  margin: 0 auto 5%;
+  padding: 1.5% 5%;
+}
+
+#inv_description input:hover {
+  background-color: #3a3a3a;
+  color: #ccc;
+}
+
+#classification_id {
+  display: block;
+  margin: auto;
+  padding: 1.5% 10%;
+  margin: 5% auto;
+  border-radius: 5px;
 }
 
 @media only screen and (min-width: 890px) {
