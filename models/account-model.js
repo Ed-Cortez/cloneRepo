@@ -13,6 +13,47 @@ async function registerAccount(account_firstname, account_lastname, account_emai
     }
   }
 
+  async function checkExistingEmail(account_email){
+    try {
+      const sql = "SELECT * FROM account WHERE account_email = $1"
+      const email = await pool.query(sql, [account_email])
+      return email.rowCount
+    } catch (error) {
+      return error.message
+    }
+  }
+
+/* *****************************
+* Return account data using email address
+* ***************************** */
+async function getAccountByEmail (account_email) {
+  try {
+    const result = await pool.query(
+      'SELECT account_id, account_firstname, account_lastname, account_email, account_type, account_password FROM account WHERE account_email = $1',
+      [account_email])
+    return result.rows[0]
+  } catch (error) {
+    return new Error("No matching email found")
+  }
+}
+
+
+async function getInventoryByInvId(inv_id) {
+  try {
+    const data = await pool.query(
+      "SELECT * FROM public.inventory WHERE inv_id = $1",
+      [inv_id]
+    )
+    return data.rows
+  } catch(error) {
+    console.error("getInventoryByInvId error" + error)
+  }
+}
+
+
   module.exports = {
-    registerAccount
+    registerAccount,
+    getAccountByEmail,
+    checkExistingEmail,
+    getInventoryByInvId
   }

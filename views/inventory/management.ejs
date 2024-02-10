@@ -1,29 +1,29 @@
 <% if (title) { %>
-    <h1><%= title %></h1>
-    <% } else {
-      res.redirect('/')
-    } %>
+  <h1><%= title %></h1>
+  <% } else {
+    res.redirect('/')
+  } %>
 
 <%- messages() %>
 
+<% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
 
+<h2>Where Would you like to go?</h2>
 <div id="management-links">
-    <a href="/inv/addClass" class="management-link" id="addClass-link">Add New Classification</a>
-    <a href="/inv/addVehicle" class="management-link" id="addInv-link">Add New Vehicle to Inventory</a>
+  <a href="/inv/addClass" class="management-link" id="addClass-link">Add New Classification</a>
+  <a href="/inv/addVehicle" class="management-link" id="addInv-link">Add New Vehicle to Inventory</a>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<h2>Manage Inventory</h2>
+<p>select a classification from the list to see the items belonging to the classification</p>
+<%- classificationSelect %>
+<table id="inventoryDisplay"></table>
+<noscript>JavaScript must be enabled to use this page.</noscript>
+<script src="../../js/inventory.js">Test</script>
 
 

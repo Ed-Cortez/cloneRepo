@@ -83,4 +83,59 @@ validate.checkInvData = async (req, res, next) => {
   next();
 };
 
-module.exports = validate;
+
+/* Check data and return errors to edit view */
+validate.checkUpdateData = async (req, res, next) => {
+  const {
+    inv_make,
+    inv_model,
+    inv_year,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_miles,
+    inv_color,
+    classification_id,
+    inv_id
+  } = req.body;
+
+  let errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav();
+    let dropdown = await utilities.getClassifications();
+
+    // Obtener itemData utilizando inv_id
+    const itemData = await invModel.getInventoryById(inv_id);
+
+    // Verificar si se encontró algún dato
+    if (itemData.length > 0) {
+      const itemName = `${itemData[0].inv_make} ${itemData[0].inv_model}`;
+      res.render("inventory/edit-inventory", {
+        errors,
+        title: itemName,
+        dropdown,
+        nav,
+        inv_make,
+        inv_model,
+        inv_year,
+        inv_description,
+        inv_image,
+        inv_thumbnail,
+        inv_price,
+        inv_miles,
+        inv_color,
+        classification_id,
+        inv_id
+      });
+    } else {
+      // Manejar el caso donde no se encontraron datos para el inv_id dado
+      res.status(404).send("Inventory item not found");
+    }
+  } else {
+    next();
+  }
+};
+
+module.exports = validate
