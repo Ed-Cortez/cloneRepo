@@ -3,16 +3,15 @@ const express = require("express")
 const router = new express.Router() 
 const invController = require("../controllers/invController")
 const utilities = require("../utilities/index")
-const invValidate = require("../utilities/inventory-validation")
 const classValidate = require("../utilities/classification-validation")
 const invValidate = require("../utilities/inventory-validation")
 
 
 // Route to management page
-router.get("/", utilities.handleErrors(invController.buildManagement));
+router.get("/", utilities.CheckAccType, utilities.handleErrors(invController.buildManagement));
 
 //build the edit Inventory View
-router.get("/edit/:inventory_id", utilities.handleErrors(invController.editInventoryView));
+router.get("/edit/:inventory_id", utilities.CheckAccType, utilities.handleErrors(invController.editInventoryView));
 
 //route to get inventory as json objects
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON));
@@ -24,16 +23,16 @@ router.get("/type/:classificationId", utilities.handleErrors(invController.build
 router.get("/detail/:inventoryId", utilities.handleErrors(invController.buildByInventoryId));
 
 // Route to add Classification
-router.get("/addClass",  utilities.handleErrors(invController.buildNewClassification));
+router.get("/addClass", utilities.CheckAccType,  utilities.handleErrors(invController.buildNewClassification));
 
 // Route to add Inventory 
-router.get("/addVehicle",  utilities.handleErrors(invController.buildNewInventory));
+router.get("/addVehicle", utilities.CheckAccType, utilities.handleErrors(invController.buildNewInventory));
 
 // Route to the Management 
-router.get("/management", utilities.handleErrors(invController.buildManagement))
+router.get("/management", utilities.CheckAccType, utilities.handleErrors(invController.buildManagement))
 
 //build the delete inventory view
-router.get("/delete/:inventory_id", utilities.handleErrors(invController.delInventoryView))
+router.get("/delete/:inventory_id",  utilities.CheckAccType, utilities.handleErrors(invController.delInventoryView))
 
 
 // Process new classification data

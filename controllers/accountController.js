@@ -154,8 +154,99 @@ async function accountLogin(req, res) {
   }
 }
 
+/* ****************************************
+*  Deliver account update view
+* *************************************** */
+async function buildUpdate(req, res, next) {
+  let nav = await utilities.getNav()
+  const account_id = parseInt(req.params.account_id)
+  res.render("./account/update", {
+    title: "Update Account",
+    nav,
+    errors: null,
+    account_id,
+  })
+}
 
+   /* ****************************************
+ *  Process update request
+ * ************************************ */
+   async function accountUpdate(req, res) {
+    let nav = utilities.getNav();
+    const {
+        account_firstname,
+        account_lastname,
+        account_email,
+        account_id
+    } = req.body;
+  
+    const updateResult = await accountModel.updateAccount(
+        account_firstname,
+        account_lastname,
+        account_email,
+        account_id
+    );
+  
+    const accountData = await accountModel.getAccountById(account_id);
+    console.log(accountData);
+  
+    if (updateResult) {
+        try {
+            const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, {
+                expiresIn: 3600 * 1000
+            });
+            res.cookie("jwt", accessToken, {
+                httpOnly: true,
+                maxAge: 3600 * 1000
+            });
+            return req.flash("success semi-bold", "The account was updated."), res.redirect("/account/");
+        } catch (error) {
+          return new Error('Access Forbidden')
+         }
 
+    } else {
+        req.flash("notice", "Sorry, the update failed.");
+        return res.status(501).render(`./account/update`, {
+            title: "Edit Account Information",
+            nav,
+            errors: null,
+            account_id: account_id,
+            account_firstname: account_firstname,
+            account_lastname: account_lastname,
+            account_email: account_email,
+        });
+    }
+}
+
+  
+  async function updatePassword(req, res) {
+    let nav = await utilities.getNav()
+    const { account_id, account_password, account_firstname, account_lastname, account_email} = req.body
+    // Hash before storing
+    let hashedPassword = await bcrypt.hashSync(account_password, 10)
+    const accountPassword = await accountModel.updatePassword(hashedPassword, account_id)
+    const accountData = await accountModel.getAccountById(account_id)
+    if(accountPassword){
+      try{
+        const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
+        res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
+        return req.flash("success", "The account password was updated. Hope you didn't forget it."), res.redirect("/account/")
+        } catch (error) {
+        return new Error('Access Forbidden')
+      }
+      } else {
+        req.flash("notice", "Sorry, the change of password failed.")
+        res.status(501).render(`./account/update`, {
+          title: "Edit Account Information",
+          nav,
+          errors: null,
+          account_id: account_id,
+          account_firstname: account_firstname,
+          account_lastname: account_lastname,
+          account_email: account_email,
+        })
+      }
+  }
 
 
   module.exports = { 
@@ -163,5 +254,8 @@ async function accountLogin(req, res) {
     buildRegister,
     registerAccount,
     accountLogin,
-    buildAccount
+    buildAccount,
+    buildUpdate,
+    accountUpdate,
+    updatePassword
 }

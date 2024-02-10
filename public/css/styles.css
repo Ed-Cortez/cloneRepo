@@ -375,10 +375,7 @@ padding: 0 5% 0 5%;
 }
 
 /* Management view*/
-.management-link {
-  display: block;
-  padding: 1.5% 8% 1.5% 8%;
-}
+
 
 /* Add Classification view*/
 
@@ -496,6 +493,8 @@ padding: 0 5% 0 5%;
 }
 
 /* styling for management page */
+
+
 h2 {
   text-align: center;
 }
@@ -508,14 +507,215 @@ h2 {
 #addInv-link {
   grid-column: 2;
 }
+
+.pmanagement {
+  color: black;
+}
+
+
 .management-link {
+  display: block;
   margin: auto;
   margin-bottom: 4em;
-  background-color: teal;
+  background-color: rgb(22, 47, 85);
   color: white;
   border-radius: .75em;
-  padding: .75em;
+  max-width: 70%;
+  padding: 3% 5% 3% 5%;
   text-decoration: none;
+  text-align: center;
+}
+
+
+#inventoryDisplay {
+  margin: 0 auto; 
+}
+
+
+
+/* Edit vehicle */
+
+#update {
+  display: block;
+  margin: auto;
+  padding: 6% 10% 5% 10%;
+  border-radius: 5px;
+  border: 3px solid rgb(22, 64, 136);
+  width: 60%;
+  background-color: rgb(22, 47, 85);
+  color: white;
+}
+
+#update a, p {
+  color: white;
+  text-align: center;
+}
+
+#update i {
+display: block;
+font-size: 0.8em;
+text-align: center;
+margin: auto;
+padding: 0 5% 0 5%;
+}
+
+#update label {
+  text-align: left;
+  margin-left: 5%;
+  font-size: 1.2em;
+}
+
+#update input {
+  display: block;
+  width: 90%;
+  border-radius: 5px;
+  border: 1px solid grey;
+  margin: 0 auto 5%;
+  padding: 1.5% 5%;
+}
+
+#update input:hover {
+  background-color: #3a3a3a;
+  color: #ccc;
+}
+
+/* Confirm deletion vehicle */
+
+#deleteForm {
+  display: block;
+  margin: auto;
+  padding: 6% 10% 5% 10%;
+  border-radius: 5px;
+  border: 3px solid rgb(22, 64, 136);
+  width: 60%;
+  background-color: rgb(22, 47, 85);
+  color: white;
+}
+
+#deleteForm a, p {
+  color: white;
+  text-align: center;
+}
+
+#deleteForm i {
+display: block;
+font-size: 0.8em;
+text-align: center;
+margin: auto;
+padding: 0 5% 0 5%;
+}
+
+#deleteForm label {
+  text-align: left;
+  margin-left: 5%;
+  font-size: 1.2em;
+}
+
+#deleteForm input {
+  display: block;
+  width: 90%;
+  border-radius: 5px;
+  border: 1px solid grey;
+  margin: 0 auto 5%;
+  padding: 1.5% 5%;
+}
+
+#deleteForm input:hover {
+  background-color: #3a3a3a;
+  color: #ccc;
+}
+
+
+
+/* Update account */
+
+#updateAccount {
+  display: block;
+  margin: auto;
+  padding: 3% 10% 5% 10%;
+  border-radius: 5px;
+  border: 3px solid rgb(22, 64, 136);
+  width: 60%;
+  background-color: rgb(22, 47, 85);
+  color: white;
+}
+
+#updateAccount a, p {
+  color: white;
+  text-align: center;
+}
+
+#updateAccount i {
+display: block;
+font-size: 0.8em;
+text-align: center;
+margin: auto;
+padding: 0 5% 0 5%;
+}
+
+#updateAccount label {
+  text-align: left;
+  margin-left: 5%;
+  font-size: 1.2em;
+}
+
+#updateAccount input {
+  display: block;
+  width: 90%;
+  border-radius: 5px;
+  border: 1px solid grey;
+  margin: 0 auto 5%;
+  padding: 1.5% 5%;
+}
+
+#updateAccount input:hover {
+  background-color: #3a3a3a;
+  color: #ccc;
+}
+
+
+#updatePassword {
+  display: block;
+  margin: 5% auto 5% auto;
+  padding: 3% 10% 5% 10%;
+  border-radius: 5px;
+  border: 3px solid rgb(22, 64, 136);
+  width: 60%;
+  background-color: rgb(22, 47, 85);
+  color: white;
+}
+
+#updatePassword a, p {
+  color: white;
+  text-align: center;
+}
+
+#updatePassword i {
+display: block;
+font-size: 0.8em;
+text-align: center;
+margin: auto;
+padding: 0 5% 0 5%;
+}
+
+#updatePassword label {
+  text-align: left;
+  margin-left: 5%;
+  font-size: 1.2em;
+}
+
+#updatePassword input {
+  display: block;
+  width: 90%;
+  border-radius: 5px;
+  border: 1px solid grey;
+  margin: 0 auto 5%;
+  padding: 1.5% 5%;
+}
+
+#updatePassword input:hover {
+  background-color: #3a3a3a;
+  color: #ccc;
 }
 
 

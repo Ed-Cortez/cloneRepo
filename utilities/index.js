@@ -209,7 +209,20 @@ Util.buildClassificationList = async function (classification_id=null) {
   return dropdown
 }
 
+/* ****************************************
+ *  Check account_type
+ * ************************************ */
+Util.CheckAccType = (req, res, next) => {
+  // Imprimir los datos del usuario para depuración
+  console.log("User data:", res.locals.accountData);
 
+  if(res.locals.accountData.account_type == 'Admin' || res.locals.accountData.account_type == 'Employee') {
+    next();
+  } else {
+    req.flash("notice", "Access Denied. Only authorized users can access that page");
+    return res.redirect("/");
+  }
+};
 
 
 module.exports = Util

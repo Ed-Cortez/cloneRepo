@@ -1,0 +1,49 @@
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+<%- messages() %>
+
+<% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
+
+<form id="updateAccount" action="/account/update" method="post" id="update">
+    <h2>Account Update</h2>
+    <label for="account_firstname">First Name:</label><br>
+    <input type="text" id="account_firstname" name="account_firstname" required value="<%= locals.accountData.account_firstname %>"><br>
+    <label for="account_lastname">Last Name:</label><br>
+    <input type="text" id="account_lastname" name="account_lastname" required value="<%= locals.accountData.account_lastname %>"><br>
+    <label for="account_email">Email:</label><br>
+    <input type="email" id="account_email" name="account_email" required value="<%= locals.accountData.account_email %>"><br>
+    <input type="hidden" name="account_id" value="<%= account_id %>">
+    <input type="submit" value="Update">
+
+    <input type="hidden" name="inv_id"
+    <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+    <% } %>>
+  </form>
+
+
+  <!-- update password -->
+<form id="updatePassword" action="/account/updatePass" method="post" id="update">
+    <h2>Password Update</h2>
+    <label for="account_password">Password:</label><br>
+    <input type="password" id="account_password" name="account_password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+    <i>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</i><br>
+    <span id="pswdBtn">Show Password</span><br>
+    
+    <input type="submit" value="Update Password">
+    <input type="hidden" name="account_id" value="<%= account_id %>">
+  
+    <input type="hidden" name="inv_id"
+    <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+    <% } %>>
+  </form>
+  <script src="../../js/script.js" async></script>
