@@ -213,8 +213,6 @@ Util.buildClassificationList = async function (classification_id=null) {
  *  Check account_type
  * ************************************ */
 Util.CheckAccType = (req, res, next) => {
-  // Imprimir los datos del usuario para depuración
-  console.log("User data:", res.locals.accountData);
 
   if(res.locals.accountData.account_type == 'Admin' || res.locals.accountData.account_type == 'Employee') {
     next();
