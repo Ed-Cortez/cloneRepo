@@ -165,7 +165,7 @@ Util.checkLogin = (req, res, next) => {
   let mgnt
   mgnt += '<h2>Welcome' + res.locals.accountData.account_firstname + '</h2>'
   mgnt += '<p><a class="management-link" href="account/update/' + res.locals.accountData.account_id +  '">Update Account Info</a></p>'
-  if (res.locals.accountData.account_type == 'Employee' || res.locals.accountData.account_type == 'Admin') {
+  if (res.locals.accountData.account_type == 'God' || res.locals.accountData.account_type == 'Employee' || res.locals.accountData.account_type == 'Admin') {
     mgnt += '<h2>Inventory Management</h2>'
     mgnt += '<p><a class="management-link" href="/inv/">Go to Inventory Management</a></p>'
   }
@@ -214,7 +214,7 @@ Util.buildClassificationList = async function (classification_id=null) {
  * ************************************ */
 Util.CheckAccType = (req, res, next) => {
 
-  if(res.locals.accountData.account_type == 'Admin' || res.locals.accountData.account_type == 'Employee') {
+  if(res.locals.accountData.account_type == 'God' || res.locals.accountData.account_type == 'Admin' || res.locals.accountData.account_type == 'Employee') {
     next();
   } else {
     req.flash("notice", "Access Denied. Only authorized users can access that page");
