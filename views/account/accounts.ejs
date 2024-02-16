@@ -1,0 +1,47 @@
+<% if (title) { %>
+    <h1><%= title %></h1>
+  <% } else {
+    res.redirect('/');
+  } %>
+  
+  <%- messages() %>
+  
+  <% if (accounts && accounts.length > 0) { %>
+    <table id="accountsTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Permission</th>
+          <!-- Agrega más columnas si es necesario -->
+        </tr>
+      </thead>
+      <tbody>
+        <% accounts.forEach(account => { %>
+          <tr>
+            <td><%= account.account_id %></td>
+            <td><%= account.account_firstname %></td>
+            <td><%= account.account_lastname %></td>
+            <td><%= account.account_email %></td>
+            <td>
+              <!-- Campo de entrada o menú desplegable para editar el account_type -->
+              <form action="/account/update-account-type" method="post">
+                <input type="hidden" name="account_id" value="<%= account.account_id %>">
+                <select name="account_type" class="accountTypeSelection">
+                  <option value="Client" <%= account.account_type === 'Client' ? 'selected' : '' %>>Client</option>
+                  <option value="Admin" <%= account.account_type === 'Admin' ? 'selected' : '' %>>Admin</option>
+                  <option value="Employee" <%= account.account_type === 'Employee' ? 'selected' : '' %>>Employee</option>
+                </select>
+                <button type="submit">Update</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <p>No accounts found.</p>
+  <% } %>
+  

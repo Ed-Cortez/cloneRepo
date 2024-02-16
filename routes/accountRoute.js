@@ -5,10 +5,17 @@ const accountController = require("../controllers/accountController")
 const utilities = require("../utilities/index")
 const regValidate = require('../utilities/account-validation')
 
+router.post("/update-account-type", utilities.checkLogin, utilities.handleErrors(accountController.updateAccountType));
+
+
+router.get("/all", utilities.checkLogin, utilities.handleErrors(accountController.viewAllAccounts));
+
 router.get("/update/:account_id", utilities.handleErrors(accountController.buildUpdate))
 
-
 router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildAccount))
+
+router.get("/management", utilities.checkLogin, utilities.handleErrors(accountController.buildAccount))
+
 
 router.get("/login", utilities.handleErrors(accountController.buildLogin));
 

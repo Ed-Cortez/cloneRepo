@@ -719,6 +719,56 @@ padding: 0 5% 0 5%;
 }
 
 
+#accountsTable {
+  width: 80%; 
+  margin: 0 auto;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif; 
+}
+
+#accountsTable th,
+#accountsTable td {
+  border: 1px solid #ddd;
+  padding: 8px; 
+  text-align: center; 
+}
+
+#accountsTable th {
+  background-color: #f2f2f2;
+}
+
+#accountsTable tr:nth-child(even) {
+  background-color: #f2f2f2; 
+}
+
+#accountsTable tr:hover {
+  background-color: #ddd; 
+}
+
+#accountsTable select {
+  width: 100%; 
+}
+
+#accountsTable button {
+  background-color: rgb(22, 47, 85); 
+  color: white; 
+  border: none; 
+  padding: 8px 12px; 
+  cursor: pointer;
+}
+
+#accountsTable button:hover {
+  background-color: #0f2e81; 
+  color: white;
+}
+
+.accountTypeSelection {
+  padding: 3%;
+  margin: 2%;
+  text-align: center;
+}
+
+
 @media only screen and (min-width: 890px) {
 
   body {

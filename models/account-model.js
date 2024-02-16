@@ -103,9 +103,30 @@ async function updatePassword(
   }
 }
 
-async function getAccounts(){
-  return await pool.query("SELECT * FROM public.account ORDER BY account_firstname")
+
+// Obtener todas las cuentas de usuario
+async function getAccounts() {
+  try {
+    const accounts = await pool.query("SELECT * FROM public.account ORDER BY account_firstname");
+    return accounts.rows;
+  } catch (error) {
+    console.error("Error al obtener todas las cuentas:", error);
+    throw new Error("Hubo un error al obtener todas las cuentas.");
+  }
 }
+
+async function updateAccountType(account_id, account_type) {
+  try {
+    // Lógica para actualizar el account_type en la base de datos
+    // Ejemplo:
+    const sql = "UPDATE public.account SET account_type = $1 WHERE account_id = $2";
+    await pool.query(sql, [account_type, account_id]);
+  } catch (error) {
+    console.error("Error updating account type:", error);
+    throw new Error("There was an error updating account type.");
+  }
+}
+
 
   module.exports = {
     getAccountById,
@@ -115,5 +136,6 @@ async function getAccounts(){
     getInventoryByInvId,
     getAccounts,
     updatePassword,
-    updateAccount
+    updateAccount,
+    updateAccountType
   }

@@ -249,6 +249,64 @@ async function buildUpdate(req, res, next) {
   }
 
 
+  // Obtener todas las cuentas de usuario
+async function getAllAccounts(req, res) {
+  try {
+    const accounts = await accountModel.getAccounts();
+    res.status(200).json(accounts); // Enviar la lista de cuentas como respuesta JSON
+  } catch (error) {
+    console.error("Error al obtener todas las cuentas:", error);
+    res.status(500).json({ error: "Hubo un error al procesar la solicitud." });
+  }
+}
+
+
+async function viewAllAccounts(req, res) {
+  try {
+    // Obtener el identificador único del usuario actual desde el token JWT almacenado en la cookie
+    const token = req.cookies.jwt;
+    const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+    const currentUserEmail = decodedToken.account_email;
+
+    // Obtener todas las cuentas de usuario
+    const accounts = await accountModel.getAccounts();
+
+    // Filtrar la lista de cuentas para excluir al usuario actual
+    const filteredAccounts = accounts.filter(account => account.account_email !== currentUserEmail);
+
+    // Obtener la navegación
+    const nav = await utilities.getNav();
+
+    // Renderizar la vista con la lista filtrada de cuentas
+    res.render("account/accounts", {
+      title: "All Accounts",
+      accounts: filteredAccounts,
+      nav: nav
+    });
+  } catch (error) {
+    console.error("Error fetching accounts:", error);
+    req.flash("error", "There was an error fetching accounts.");
+    res.redirect("/"); // Redireccionar a la página principal si ocurre un error
+  }
+}
+
+
+
+async function updateAccountType(req, res) {
+  const { account_id, account_type } = req.body;
+  try {
+    // Lógica para actualizar el account_type en la base de datos
+    // Ejemplo:
+    await accountModel.updateAccountType(account_id, account_type);
+    req.flash("success", "Account type updated successfully.");
+    res.redirect("/account/all");
+  } catch (error) {
+    console.error("Error updating account type:", error);
+    req.flash("error", "There was an error updating account type.");
+    res.redirect("/account/all");
+  }
+}
+
   module.exports = { 
     buildLogin, 
     buildRegister,
@@ -257,5 +315,8 @@ async function buildUpdate(req, res, next) {
     buildAccount,
     buildUpdate,
     accountUpdate,
-    updatePassword
+    updatePassword,
+    getAllAccounts,
+    viewAllAccounts,
+    updateAccountType
 }
